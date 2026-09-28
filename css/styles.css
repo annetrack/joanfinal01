@@ -2439,19 +2439,84 @@ body:before{
   .flow .detail .vw-commentary{font-size:13px!important;}
 }
 
-/* =========================================================
-   FINAL SECTION SPACING — MORE BREATHING ROOM
-   ========================================================= */
 
-/* Desktop / tablet: give major content sections more vertical breathing room.
-   Excludes the trust strip and final CTA because those areas have their own spacing. */
-section:not(.trust-strip):not(.cta){
-  padding-block:105px!important;
+
+/* =========================================================
+   ACTIVE NAVIGATION — CURRENT SECTION
+   Yellow text + subtle underline for the section in view.
+   ========================================================= */
+nav .links a{
+  position:relative;
+  transition:color .2s ease, opacity .2s ease;
 }
 
-/* Mobile: add breathing room without making the page excessively tall. */
+nav .links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-7px;
+  height:2px;
+  border-radius:999px;
+  background:#f4cb69;
+  transform:scaleX(0);
+  transform-origin:center;
+  transition:transform .2s ease;
+}
+
+nav .links a:hover,
+nav .links a:focus-visible,
+nav .links a.active{
+  color:#f4cb69!important;
+}
+
+nav .links a.active::after{
+  transform:scaleX(1);
+}
+
+@media(max-width:900px){
+  nav .links a::after{
+    display:none;
+  }
+  nav .links a.active{
+    background:rgba(244,203,105,.09)!important;
+    color:#f4cb69!important;
+  }
+}
+
+/* =========================================================
+   FINAL SECTION SPACING — MORE NOTICEABLE BREATHING ROOM
+   ========================================================= */
+
+/* Major content sections */
+main > section:not(.trust-strip):not(.cta){
+  padding-top:120px!important;
+  padding-bottom:120px!important;
+}
+
+/* Give the Engine its own breathing room because it is a div, not a section. */
+.flow{
+  padding-top:50px!important;
+  padding-bottom:110px!important;
+}
+
+/* Slightly more space between section headings and their content. */
+main > section:not(.trust-strip):not(.cta) .head{
+  margin-bottom:55px!important;
+}
+
 @media(max-width:700px){
-  section:not(.trust-strip):not(.cta){
-    padding-block:80px!important;
+  main > section:not(.trust-strip):not(.cta){
+    padding-top:88px!important;
+    padding-bottom:88px!important;
+  }
+
+  .flow{
+    padding-top:36px!important;
+    padding-bottom:82px!important;
+  }
+
+  main > section:not(.trust-strip):not(.cta) .head{
+    margin-bottom:40px!important;
   }
 }
