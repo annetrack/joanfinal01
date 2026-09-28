@@ -1,4 +1,4 @@
-
+ 
 /* =========================================================
    ORIGINAL STYLE BLOCK 1 — PRESERVED ORDER
    ========================================================= */
@@ -2437,4 +2437,21 @@ body:before{
 @media(max-width:900px){
   .trust-title{text-align:center!important;}
   .flow .detail .vw-commentary{font-size:13px!important;}
+}
+
+/* =========================================================
+   FINAL SECTION SPACING — MORE BREATHING ROOM
+   ========================================================= */
+
+/* Desktop / tablet: give major content sections more vertical breathing room.
+   Excludes the trust strip and final CTA because those areas have their own spacing. */
+section:not(.trust-strip):not(.cta){
+  padding-block:105px!important;
+}
+
+/* Mobile: add breathing room without making the page excessively tall. */
+@media(max-width:700px){
+  section:not(.trust-strip):not(.cta){
+    padding-block:80px!important;
+  }
 }
