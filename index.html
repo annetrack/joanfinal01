@@ -369,6 +369,43 @@ document.addEventListener("DOMContentLoaded",function(){
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
 })();
 </script>
+
+<script id="voicework-active-nav-script">
+(function(){
+  const navLinks=[...document.querySelectorAll('nav .links a[href^="#"]')];
+  if(!navLinks.length) return;
+
+  const sections=navLinks
+    .map(link=>document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  const setActive=(id)=>{
+    navLinks.forEach(link=>{
+      const active=link.getAttribute('href')==='#'+id;
+      link.classList.toggle('active',active);
+      if(active) link.setAttribute('aria-current','page');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  const observer=new IntersectionObserver(entries=>{
+    const visible=entries
+      .filter(entry=>entry.isIntersecting)
+      .sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
+
+    if(visible[0]) setActive(visible[0].target.id);
+  },{
+    rootMargin:'-25% 0px -60% 0px',
+    threshold:[0,.15,.35,.6]
+  });
+
+  sections.forEach(section=>observer.observe(section));
+
+  navLinks.forEach(link=>{
+    link.addEventListener('click',()=>setActive(link.getAttribute('href').slice(1)));
+  });
+})();
+</script>
 </body>
 </html>
 
