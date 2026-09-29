@@ -1,4 +1,4 @@
-/* Voice Work interactions */
+ /* Voice Work interactions */
 
 function stage(el, message) {
   document.querySelectorAll('.stage').forEach(item => item.classList.remove('active'));
