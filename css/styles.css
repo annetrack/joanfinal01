@@ -2109,3 +2109,465 @@ footer {
     animation: none;
   }
 }
+
+
+/* ==========================================================================
+   PREMIUM POLISH — LIGHTING, HERO PORTRAIT, PAIN ICONS, PROCESS NUMBERS
+   ========================================================================== */
+
+/* Remove the broad CTA haze that was creating a visible horizontal band. */
+.cta {
+  background: transparent !important;
+}
+
+/* Keep the cursor flashlight subtle and premium. */
+body::after {
+  background: radial-gradient(
+    circle 210px at var(--mx, 50%) var(--my, 30%),
+    rgba(244, 203, 105, 0.045),
+    rgba(126, 96, 255, 0.025) 32%,
+    transparent 70%
+  );
+  opacity: .95;
+  mix-blend-mode: screen;
+}
+
+/* Hero: retain the approved portrait and make it feel integrated with the page. */
+.hero {
+  overflow: hidden;
+  text-align: left;
+  background:
+    radial-gradient(circle at 76% 42%, rgba(106, 72, 230, .15), transparent 25%),
+    radial-gradient(circle at 82% 78%, rgba(244, 203, 105, .07), transparent 22%),
+    linear-gradient(180deg, rgba(8, 39, 70, .82), rgba(7, 31, 54, .55));
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  right: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(167, 139, 250, .34);
+  background: radial-gradient(circle, rgba(93, 69, 207, .16), transparent 64%);
+  box-shadow: 0 0 80px rgba(115, 79, 255, .10);
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(360px, .78fr);
+  align-items: center;
+  gap: 30px;
+  min-height: 520px;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 3;
+}
+
+.hero .wrap {
+  max-width: 1180px;
+}
+
+.hero h1 {
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: 500;
+  letter-spacing: -.045em;
+}
+
+.hero p {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 690px;
+}
+
+.actions {
+  justify-content: flex-start;
+}
+
+.hero-portrait {
+  position: relative;
+  align-self: end;
+  justify-self: end;
+  width: min(100%, 560px);
+  z-index: 2;
+  isolation: isolate;
+}
+
+.hero-portrait-glow {
+  position: absolute;
+  inset: 12% 4% 6% 2%;
+  z-index: -1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 62% 42%, rgba(167, 139, 250, .36), transparent 48%),
+    radial-gradient(circle at 74% 70%, rgba(244, 203, 105, .24), transparent 35%);
+  filter: blur(22px);
+  animation: portrait-breathe 7s ease-in-out infinite;
+}
+
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 10% 2% 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(70, 57, 176, .16), transparent 67%);
+}
+
+.hero-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 50px rgba(1, 14, 27, .38));
+}
+
+@keyframes portrait-breathe {
+  0%, 100% { transform: scale(.98); opacity: .72; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+
+/* Six post-production pain points: strong circular X markers + refined hover. */
+.pain {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 26px 0;
+}
+
+.pain-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 70px;
+  padding: 12px 14px;
+  border: 1px solid rgba(167, 139, 250, .13);
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(18, 51, 81, .72), rgba(8, 31, 53, .68));
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.pain-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(244, 203, 105, .42);
+  background: linear-gradient(145deg, rgba(27, 61, 94, .82), rgba(10, 35, 59, .76));
+  box-shadow: 0 14px 32px rgba(2, 15, 29, .25), 0 0 24px rgba(167, 139, 250, .08);
+}
+
+.pain-icon {
+  display: grid;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(244, 203, 105, .55);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 203, 105, .18), rgba(167, 139, 250, .08));
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 1;
+  box-shadow: 0 0 0 4px rgba(244, 203, 105, .035), 0 0 18px rgba(244, 203, 105, .10);
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.pain-item:hover .pain-icon {
+  transform: rotate(8deg) scale(1.08);
+  background: radial-gradient(circle, rgba(244, 203, 105, .28), rgba(167, 139, 250, .12));
+  box-shadow: 0 0 0 5px rgba(244, 203, 105, .05), 0 0 24px rgba(244, 203, 105, .22);
+}
+
+.pain-item > span:last-child {
+  min-width: 0;
+}
+
+.pain-item b {
+  display: block;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.pain-item small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted-2);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+/* Make the process numbers unmistakable. */
+.num {
+  color: #ffd85e !important;
+  font-size: 29px;
+  font-weight: 750;
+  letter-spacing: -.04em;
+  text-shadow: 0 0 12px rgba(244, 203, 105, .32), 0 0 28px rgba(244, 203, 105, .14);
+  transition: transform .25s ease, text-shadow .25s ease;
+}
+
+.step:hover .num {
+  transform: translateY(-2px);
+  text-shadow: 0 0 14px rgba(244, 203, 105, .55), 0 0 34px rgba(244, 203, 105, .24);
+}
+
+.step:hover::before {
+  border-color: rgba(255, 216, 94, .9);
+  box-shadow: 0 0 0 6px rgba(244, 203, 105, .06), 0 0 20px rgba(244, 203, 105, .20);
+}
+
+/* Subtle premium hover language across cards without changing layout. */
+.card,
+.mini,
+.quote,
+.video-card,
+.commitment-box,
+.cta .box {
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease, background .3s ease;
+}
+
+.card:hover,
+.mini:hover,
+.quote:hover,
+.video-card:hover,
+.commitment-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(167, 139, 250, .28);
+  box-shadow: 0 20px 50px rgba(2, 15, 29, .24), 0 0 28px rgba(95, 74, 220, .06);
+}
+
+/* Keep decorative section backgrounds clean; avoid horizontal haze bands. */
+.alt {
+  background: linear-gradient(180deg, rgba(255,255,255,.010), rgba(255,255,255,0) 58%) !important;
+}
+
+.proof::before,
+.testimonials::before,
+.about::before {
+  background: none !important;
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    min-height: 0;
+  }
+
+  .hero-copy,
+  .hero p {
+    margin-inline: auto;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .hero-portrait {
+    width: min(100%, 520px);
+    margin-inline: auto;
+  }
+
+  .hero::before {
+    right: 50%;
+    transform: translate(50%, -25%);
+    width: 470px;
+    height: 470px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pain {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding-top: 70px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 12vw, 62px);
+  }
+
+  .hero-portrait {
+    width: min(100%, 430px);
+  }
+
+  .pain-item {
+    min-height: 64px;
+  }
+}
+
+@media (pointer: coarse) {
+  body::after {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   FINAL V3 POLISH — KEEP PREMIUM V1, REMOVE HERO PORTRAIT, REFINE METRICS
+   ========================================================================== */
+
+/* Hero: restore the original centered composition while keeping the premium lighting. */
+.hero {
+  text-align: center;
+}
+
+.hero .wrap.hero-copy {
+  max-width: 900px;
+  margin-inline: auto;
+  min-height: 0;
+}
+
+.hero-copy {
+  margin-inline: auto;
+}
+
+.hero h1,
+.hero p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero .actions {
+  justify-content: center;
+}
+
+/* The hero portrait is intentionally removed from this version. */
+.hero::before {
+  right: 50%;
+  transform: translateX(50%);
+  width: 620px;
+  height: 620px;
+  opacity: .72;
+}
+
+/* Keep the calculator premium, but make the metric typography lighter and more editorial. */
+.calc .metric.big::before {
+  font-weight: 500;
+  color: #b8c4cf;
+  letter-spacing: .075em;
+}
+
+.calc .metric.big b#sv {
+  font-weight: 500;
+  text-shadow: 0 0 18px rgba(244,203,105,.20);
+}
+
+.metric b {
+  font-weight: 500;
+}
+
+.calc output {
+  font-weight: 600;
+}
+
+/* Meet Joan: larger, borderless portrait that fades naturally into the page. */
+.about-grid {
+  grid-template-columns: minmax(360px, 430px) minmax(0, 1fr);
+  gap: 48px;
+  max-width: 1060px;
+}
+
+.about-photo {
+  max-width: none;
+  padding: 0;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+  position: relative;
+}
+
+.about-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 40%, transparent 48%, rgba(8,39,70,.08) 72%, rgba(7,31,54,.68) 100%),
+    linear-gradient(90deg, rgba(7,31,54,.35), transparent 22%, transparent 78%, rgba(7,31,54,.22));
+  z-index: 2;
+}
+
+.about-photo-inner {
+  position: relative;
+  aspect-ratio: auto;
+  min-height: 520px;
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+  display: block;
+}
+
+.about-photo-inner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 650px;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 30px 55px rgba(1,14,27,.34));
+}
+
+/* The six problem items use red X markers for an unmistakable "not your job" cue. */
+.pain-icon {
+  border-color: rgba(255, 92, 92, .62) !important;
+  background: radial-gradient(circle, rgba(255, 92, 92, .18), rgba(167, 139, 250, .06)) !important;
+  color: #ff6b6b !important;
+  box-shadow: 0 0 0 4px rgba(255,92,92,.035), 0 0 18px rgba(255,92,92,.12) !important;
+}
+
+.pain-item:hover .pain-icon {
+  background: radial-gradient(circle, rgba(255, 92, 92, .30), rgba(167, 139, 250, .08)) !important;
+  border-color: rgba(255, 110, 110, .90) !important;
+  color: #ff7777 !important;
+  box-shadow: 0 0 0 5px rgba(255,92,92,.05), 0 0 26px rgba(255,92,92,.24) !important;
+}
+
+@media (max-width: 900px) {
+  .hero .wrap.hero-copy {
+    max-width: 760px;
+  }
+
+  .about-grid {
+    grid-template-columns: minmax(300px, 380px) 1fr;
+    gap: 35px;
+  }
+
+  .about-photo-inner {
+    min-height: 460px;
+  }
+}
+
+@media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    width: min(100%, 430px);
+    margin-inline: auto;
+  }
+
+  .about-photo-inner {
+    min-height: 0;
+  }
+
+  .about-photo-inner img {
+    max-height: 620px;
+    margin-inline: auto;
+  }
+}
