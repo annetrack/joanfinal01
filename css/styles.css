@@ -2571,3 +2571,129 @@ body::after {
     margin-inline: auto;
   }
 }
+
+/* ==========================================================================
+   FINAL CLIENT POLISH — MATCH COMMITMENT / FOCUS PANELS
+   Only visual treatment changes; typography, copy, and palette remain intact.
+   ========================================================================== */
+
+/* Give the closing Focus panel the same footprint and visual family as the
+   wider Voice Work Commitment panel, while retaining its own subtle texture. */
+.commitment-box,
+.cta .box {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.commitment-box {
+  padding: 40px 34px;
+}
+
+.cta .box {
+  padding: 40px 34px;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(78,157,219,.11), transparent 34%),
+    radial-gradient(circle at 82% 72%, rgba(167,139,250,.09), transparent 36%),
+    linear-gradient(145deg, rgba(17,57,91,.78), rgba(8,39,68,.82));
+  box-shadow: 0 18px 50px rgba(4,20,36,.18), inset 0 1px rgba(255,255,255,.035);
+}
+
+/* Fine atmospheric texture — intentionally very subtle so it reads as
+   depth rather than a visible pattern. */
+.commitment-box::before,
+.cta .box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255,255,255,.045) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 72% 68%, rgba(255,255,255,.03) 0 1px, transparent 1.5px),
+    linear-gradient(120deg, transparent 0 42%, rgba(255,255,255,.025) 50%, transparent 58%);
+  background-size: 42px 42px, 58px 58px, 100% 100%;
+  mix-blend-mode: screen;
+}
+
+.commitment-box > *,
+.cta .box > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Keep the closing headline on exactly the same scale as the commitment
+   headline, without changing the site's existing font family. */
+.cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1;
+}
+
+/* The two panels should feel like one deliberate visual system. */
+.commitment-box:hover,
+.cta .box:hover {
+  border-color: rgba(167, 139, 250, .28);
+  box-shadow: 0 20px 55px rgba(2,15,29,.25), 0 0 28px rgba(95,74,220,.07);
+}
+
+/* Make the Before / After section feel more editorial without introducing
+   a new component style or changing any of its content. */
+.twocol {
+  gap: 18px;
+}
+
+.before,
+.after {
+  overflow: hidden;
+  box-shadow: 0 16px 42px rgba(2,15,29,.14), inset 0 1px rgba(255,255,255,.035);
+}
+
+.before::before,
+.after::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 85% 12%, rgba(255,255,255,.045), transparent 30%);
+}
+
+.before > *,
+.after > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Joan's portrait: soften the edges into the page instead of presenting it
+   as a hard-edged card. */
+.about-photo::after {
+  background:
+    radial-gradient(ellipse at 50% 46%, transparent 48%, rgba(7,31,54,.12) 70%, rgba(7,31,54,.72) 100%),
+    linear-gradient(90deg, rgba(7,31,54,.48), transparent 20%, transparent 80%, rgba(7,31,54,.32)),
+    linear-gradient(180deg, rgba(7,31,54,.08), transparent 20%, transparent 82%, rgba(7,31,54,.48));
+}
+
+.about-photo-inner img {
+  filter: drop-shadow(0 28px 58px rgba(1,14,27,.36));
+}
+
+@media (max-width: 800px) {
+  .commitment-box,
+  .cta .box {
+    padding: 34px 24px;
+  }
+}
+EOF
+python - <<'PY'
+from pathlib import Path
+p=Path('/mnt/data/voice-work-build/voice-work-final/css/styles.css')
+s=p.read_text()
+print('braces', s.count('{'), s.count('}'))
+PY
+rm -f /mnt/data/voice-work-final-client-polish.zip
+cd /mnt/data/voice-work-build && zip -qr /mnt/data/voice-work-final-client-polish.zip voice-work-final
+ls -lh /mnt/data/voice-work-final-client-polish.zip
